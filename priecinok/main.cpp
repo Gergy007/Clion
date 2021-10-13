@@ -84,18 +84,22 @@ int main()
     Kruh ScitaneC = K1 + cislo;
     Kruh Odcitane = K1 - K2;
     Kruh OdcitaneC = K1 - cislo;
-    std::cout<<Znasobene.getPolomer()<<std::endl;
-    std::cout<<ScitaneC.getPolomer()<<std::endl;
-    std::cout<<Odcitane.getPolomer()<<std::endl;
-    std::cout<<OdcitaneC.getPolomer()<<std::endl;
+    std::cout<<Znasobene<<std::endl;
+    std::cout<<ScitaneC<<std::endl;
+    std::cout<<Odcitane<<std::endl;
+    std::cout<<OdcitaneC<<std::endl;
 
-
+    //12.10.
     Kruh Novy(5);
     ++Novy;
-    std::cout<<(++Novy).getPolomer();
+    std::cout<<(++Novy)<<endl;
     K2++;
 
+    //13.10.
+    std::cout<<(10+K1)<<std::endl;
+    std::cout<<K1;
+    std::cin>>K2;
+    std::cout<<K2;
 
     return 0;
 }
-

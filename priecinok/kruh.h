@@ -17,7 +17,9 @@ public:
     float getObsah() const;
 
     //pretazovanie operatorov
-    Kruh operator+(const Kruh &other) const;
+    Kruh operator+(const Kruh &other) const; //pripocita ku kruhu cislo
+    friend Kruh operator+(int cislo, const Kruh &other); //priatelska funkcia, ktora pripocita k cislu kruh
+    friend Kruh operator*(int cislo, const Kruh &other); //priatelska funkcia, ktora vynasobi cislo kruhom
     bool operator<(const Kruh &other) const;
     Kruh operator+(int cislo) const;
     Kruh operator*(int cislo) const;
@@ -31,6 +33,11 @@ public:
     const Kruh& operator+=(int cislo);
     const Kruh& operator-=(int cislo);
     const Kruh& operator--();
+
+    //pretazenie operatora vystupu
+    friend std::ostream & operator <<(std::ostream& os, const Kruh &other); //pretazenie operatoru na vystup
+    //koniec pretazenia operatorov
+    friend std::istream & operator >>(std::istream& is, Kruh &other);
 
     //koniec pretazovania operatorov
     Kruh spocitajKruhy(Kruh other) const;
@@ -50,5 +57,7 @@ public:
 
 };
     const float PI = 3.14;
+
+
 
 #endif //PRVY_KRUH_H

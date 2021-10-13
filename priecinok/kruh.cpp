@@ -1,5 +1,5 @@
 //
-// Created by juraj on 12. 10. 2021.
+// Created by map on 27. 9. 2021.
 //
 #include "kruh.h"
 
@@ -17,7 +17,7 @@ Kruh Kruh::spocitajKruhy(Kruh other) const
     //Kruh Dalsi; // vytvorenie noveho kruhu
     //Dalsi.polomer = this -> polomer+other.polomer; //this = pointer na seba sameho (preto tam je sipka)
     //return Dalsi;
-    return {this -> polomer+other.polomer};
+     return {this -> polomer+other.polomer};
     //return Kruh(this->polomer+other.polomer);
 }
 
@@ -163,20 +163,18 @@ Kruh Kruh::operator++(int nepouzijem)
 
 const Kruh &Kruh::operator+=(int cislo)
 {
-    if(polomer > cislo)
-    {
-        return {polomer + cislo};
-    }
-    return {1};
+    polomer += cislo;
+    return {*this};
 }
 
 const Kruh &Kruh::operator-=(int cislo)
 {
     if(polomer > cislo)
     {
-        return {polomer - cislo};
+        polomer -= cislo;
     }
-    return {1};
+    polomer = 1;
+    return {*this};
 }
 
 const Kruh &Kruh::operator--()
@@ -190,4 +188,25 @@ const Kruh &Kruh::operator--()
     */
 }
 
+Kruh operator+(int cislo, const Kruh &other)
+{
+    return other+cislo;
+}
 
+Kruh operator*(int cislo, const Kruh &other)
+{
+    return other*cislo;
+}
+
+std::ostream &operator<<(std::ostream &os, const Kruh &other)
+{
+    os<<"Kruh ma polomer "<<other.polomer<<std::endl;
+    return os;
+}
+
+std::istream &operator>>(std::istream &is, Kruh &other)
+{
+    std::cout<<"Zadaj polomer: ";
+    is>>other.polomer;
+    return is;
+}
