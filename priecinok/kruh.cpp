@@ -3,14 +3,18 @@
 //
 #include "kruh.h"
 
+/*
 float Kruh::getObvod() const
 {
     return 2 * PI * polomer;
 }
+*/
+/*
 float Kruh::getObsah() const
 {
     return PI * polomer * polomer;
 }
+*/
 
 Kruh Kruh::spocitajKruhy(Kruh other) const
 {

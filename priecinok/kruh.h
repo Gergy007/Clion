@@ -13,8 +13,8 @@ public:
 
     int getPolomer() const { return polomer;}; //inline metoda
     void setPolomer(int r) { polomer = r;}; //inline metoda
-    float getObvod() const;
-    float getObsah() const;
+    float getObvod() const { return 2 * Kruh::PI * polomer;};
+    float getObsah() const { return Kruh::PI * Kruh::PI * Kruh::PI;};
 
     //pretazovanie operatorov
     Kruh operator+(const Kruh &other) const; //pripocita ku kruhu cislo
@@ -34,10 +34,10 @@ public:
     const Kruh& operator-=(int cislo);
     const Kruh& operator--();
 
-    //pretazenie operatora vystupu
-    friend std::ostream & operator <<(std::ostream& os, const Kruh &other); //pretazenie operatoru na vystup
+    //pretazenie operatorov
+    friend std::ostream & operator <<(std::ostream& os, const Kruh &other); //pretazenie operatora vystup
+    friend std::istream & operator >>(std::istream& is, Kruh &other); //pretazenie operatora vstup
     //koniec pretazenia operatorov
-    friend std::istream & operator >>(std::istream& is, Kruh &other);
 
     //koniec pretazovania operatorov
     Kruh spocitajKruhy(Kruh other) const;
