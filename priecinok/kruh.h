@@ -9,7 +9,7 @@ private:
     int polomer;
 public:
     Kruh(); //vypyta si polomer vznikajuceho kruhu
-    Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r
+    explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r; explicit - zakaze konverziu cisla na kruh
 
     int getPolomer() const { return polomer;}; //inline metoda
     void setPolomer(int r) { polomer = r;}; //inline metoda
@@ -53,6 +53,10 @@ public:
     static constexpr float PI = 3.14;
     static void vymenKruhy(Kruh *prvy, Kruh *druhy);
     static void vymenKruhy(Kruh &prvy, Kruh &druhy);
+
+    static void generujPoleKruhov(Kruh *pole, int pocet);
+    static void vypisPoleKruhuv(const Kruh *pole, int pocet);
+    static Kruh getMaxKruh(const Kruh *pole, int pocet);
 
 
 };

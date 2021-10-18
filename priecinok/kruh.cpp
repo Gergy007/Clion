@@ -21,7 +21,7 @@ Kruh Kruh::spocitajKruhy(Kruh other) const
     //Kruh Dalsi; // vytvorenie noveho kruhu
     //Dalsi.polomer = this -> polomer+other.polomer; //this = pointer na seba sameho (preto tam je sipka)
     //return Dalsi;
-     return {this -> polomer+other.polomer};
+     return Kruh(this -> polomer+other.polomer);
     //return Kruh(this->polomer+other.polomer);
 }
 
@@ -30,7 +30,7 @@ Kruh Kruh::spocitajKruhy(const Kruh *other) const
     //Kruh Dalsi;
     //Dalsi.polomer = this -> polomer + other->polomer;
     //return Dalsi;
-    return {this->polomer + other->polomer};
+    return Kruh(this->polomer + other->polomer);
 }
 
 Kruh Kruh::spocitajKruhy() const
@@ -38,16 +38,19 @@ Kruh Kruh::spocitajKruhy() const
     int polomer;
     std::cout<<"Polomer";
     std::cin>>polomer;
-    return { this -> polomer+polomer};
+    return Kruh(this -> polomer+polomer);
 }
 
 
 Kruh::Kruh()
 {
+    /*
     int mPolomer;
     std::cout<<"Zadaj polomer";
     std::cin>>mPolomer;
     this->polomer = mPolomer;
+    */
+    polomer = 0;
 }
 
 
@@ -92,9 +95,9 @@ Kruh Kruh::odcitajKruhy() const
     std::cin>>polomer;
     if (this->polomer > polomer)
     {
-        return {this->polomer - polomer};
+        return Kruh(this->polomer - polomer);
     }
-    return {1};
+    return Kruh(1);
 }
 
 void Kruh::vymenKruhy(Kruh *prvy, Kruh *druhy)
@@ -115,7 +118,7 @@ void Kruh::vymenKruhy(Kruh &prvy, Kruh &druhy)
 
 Kruh Kruh::operator+(const Kruh &other) const
 {
-    return {polomer+other.polomer};
+    return Kruh(polomer+other.polomer);
     //return Kruh(polomer+other.polomer);
 }
 
@@ -126,30 +129,30 @@ bool Kruh::operator<(const Kruh &other) const
 
 Kruh Kruh::operator+(int cislo) const
 {
-    return {polomer+cislo};
+    return Kruh(polomer+cislo);
 }
 
 Kruh Kruh::operator*(int cislo) const
 {
-    return {polomer*cislo};
+    return Kruh(polomer*cislo);
 }
 
 Kruh Kruh::operator-(int cislo) const
 {
     if (polomer > cislo)
     {
-        return {polomer-cislo};
+        return Kruh(polomer-cislo);
     }
-    return {1};
+    return Kruh(1);
 }
 
 Kruh Kruh::operator-(const Kruh &other) const
 {
     if(polomer>other.polomer)
     {
-        return {polomer-other.polomer};
+        return Kruh(polomer-other.polomer);
     }
-    return {1};
+    return Kruh(1);
 }
 
 const Kruh &Kruh::operator++()
@@ -213,4 +216,34 @@ std::istream &operator>>(std::istream &is, Kruh &other)
     std::cout<<"Zadaj polomer: ";
     is>>other.polomer;
     return is;
+}
+
+void Kruh::generujPoleKruhov(Kruh *pole, int pocet)
+{
+    std::srand(time(0));
+    for(int i=0;i<pocet;i++)
+    {
+        *(pole+i) = Kruh(1 + std::rand() % 100);
+    }
+}
+
+void Kruh::vypisPoleKruhuv(const Kruh *pole, int pocet)
+{
+    for(int i=0;i<pocet;i++)
+    {
+        std::cout<<*(pole+i);
+    }
+}
+
+Kruh Kruh::getMaxKruh(const Kruh *pole, int pocet)
+{
+    Kruh Temp = Kruh(0);
+    for(int i=0;i<pocet;i++)
+    {
+        if(Temp.polomer < *(pole+i))
+        {
+            Temp.polomer = *(pole+i);
+        }
+    }
+    return Temp;
 }

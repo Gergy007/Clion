@@ -71,7 +71,7 @@ int main()
     std::cout<<Jedna.getPolomer()<<" "<<Dva.getPolomer();
     */
 
-
+    /*
     Kruh K1(4);
     Kruh K2(8);
     int cislo = 2;
@@ -88,7 +88,9 @@ int main()
     std::cout<<ScitaneC<<std::endl;
     std::cout<<Odcitane<<std::endl;
     std::cout<<OdcitaneC<<std::endl;
+    */
 
+    /*
     //12.10.
     Kruh Novy(5);
     ++Novy;
@@ -100,6 +102,12 @@ int main()
     std::cout<<K1;
     std::cin>>K2;
     std::cout<<K2;
+    */
+
+    const int kolko = 50;
+    Kruh Kruhy[kolko];
+    Kruh::generujPoleKruhov(Kruhy,kolko);
+    Kruh::vypisPoleKruhuv(Kruhy,kolko);
 
     return 0;
 }
