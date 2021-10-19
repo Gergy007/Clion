@@ -9,7 +9,7 @@ private:
     int polomer;
 public:
     Kruh(); //vypyta si polomer vznikajuceho kruhu
-    explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r; explicit - zakaze konverziu cisla na kruh
+    explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r
 
     int getPolomer() const { return polomer;}; //inline metoda
     void setPolomer(int r) { polomer = r;}; //inline metoda
@@ -17,6 +17,8 @@ public:
     float getObsah() const { return Kruh::PI * Kruh::PI * Kruh::PI;};
 
     //pretazovanie operatorov
+    operator int() const;
+    operator float() const;
     Kruh operator+(const Kruh &other) const; //pripocita ku kruhu cislo
     friend Kruh operator+(int cislo, const Kruh &other); //priatelska funkcia, ktora pripocita k cislu kruh
     friend Kruh operator*(int cislo, const Kruh &other); //priatelska funkcia, ktora vynasobi cislo kruhom
@@ -54,9 +56,11 @@ public:
     static void vymenKruhy(Kruh *prvy, Kruh *druhy);
     static void vymenKruhy(Kruh &prvy, Kruh &druhy);
 
-    static void generujPoleKruhov(Kruh *pole, int pocet);
-    static void vypisPoleKruhuv(const Kruh *pole, int pocet);
+    static void generujPoleKruhov(Kruh *pole,int pocet);
+    static void vypisPoleKruhov(const Kruh *pole, int pocet);
     static Kruh getMaxKruh(const Kruh *pole, int pocet);
+    static Kruh* getMaxKruh(Kruh *pole, int pocet);
+    static void utriedPoleKruhov(const Kruh *pole, int pocet);
 
 
 };

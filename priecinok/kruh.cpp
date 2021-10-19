@@ -44,13 +44,10 @@ Kruh Kruh::spocitajKruhy() const
 
 Kruh::Kruh()
 {
-    /*
     int mPolomer;
     std::cout<<"Zadaj polomer";
     std::cin>>mPolomer;
     this->polomer = mPolomer;
-    */
-    polomer = 0;
 }
 
 
@@ -220,14 +217,14 @@ std::istream &operator>>(std::istream &is, Kruh &other)
 
 void Kruh::generujPoleKruhov(Kruh *pole, int pocet)
 {
-    std::srand(time(0));
+    srand(time(0));
     for(int i=0;i<pocet;i++)
     {
-        *(pole+i) = Kruh(1 + std::rand() % 100);
+        (pole+i)->polomer = std::rand() %99+1;
     }
 }
 
-void Kruh::vypisPoleKruhuv(const Kruh *pole, int pocet)
+void Kruh::vypisPoleKruhov(const Kruh *pole, int pocet)
 {
     for(int i=0;i<pocet;i++)
     {
@@ -237,13 +234,30 @@ void Kruh::vypisPoleKruhuv(const Kruh *pole, int pocet)
 
 Kruh Kruh::getMaxKruh(const Kruh *pole, int pocet)
 {
-    Kruh Temp = Kruh(0);
-    for(int i=0;i<pocet;i++)
+    Kruh Max = pole[0];
+    for(int i=1;i<pocet;i++)
     {
-        if(Temp.polomer < *(pole+i))
-        {
-            Temp.polomer = *(pole+i);
-        }
+        Max = (Max < pole[i])?pole[i]:Max;
     }
-    return Temp;
+    return Max;
+}
+
+Kruh *Kruh::getMaxKruh(Kruh *pole, int pocet)
+{
+    Kruh *kde = pole;
+    for(int i=1;i<pocet;++i)
+    {
+        kde = (*(kde) < *(pole+i))?(pole+i):kde;
+    }
+    return kde;
+}
+
+Kruh::operator int() const
+{
+    return polomer;
+}
+
+Kruh::operator float() const
+{
+    return PI * 2 * polomer;
 }
