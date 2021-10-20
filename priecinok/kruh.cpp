@@ -45,9 +45,11 @@ Kruh Kruh::spocitajKruhy() const
 Kruh::Kruh()
 {
     int mPolomer;
+    ++p;
     std::cout<<"Zadaj polomer";
     std::cin>>mPolomer;
     this->polomer = mPolomer;
+    this->pocitadlo = p;
 }
 
 
@@ -260,4 +262,16 @@ Kruh::operator int() const
 Kruh::operator float() const
 {
     return PI * 2 * polomer;
+}
+
+int Kruh::cmp(const void *a, const void *b)
+{
+    Kruh *prvy = (Kruh *)a; //pretypujeme pointer na void na konkretny pointer ktory potrebujeme, u nas Kruh
+    Kruh *druhy = (Kruh *)b;
+    return (prvy->polomer - druhy->polomer) * (-1);
+}
+
+void Kruh::utriedPoleKruhov(Kruh *pole, int pocet)
+{
+    std::qsort((Kruh *)pole,pocet,sizeof (Kruh),cmp);
 }

@@ -48,5 +48,23 @@ int main()
     std::cout<<K2;
     */
 
+    int pocet;
+    //dynamicky generovane pole
+    std::cout<<"Zadaj pocet prvkov pola: "<<endl;
+    std::cin>>pocet;
+    Kruh *dynamickePole = new Kruh [pocet]; //alokacia pamate na hromade operatom new
+    if(dynamickePole == NULL)
+    {
+        std::cout<<"Memory not allocated!"<<endl;
+        exit(1);
+    }
+    Kruh::generujPoleKruhov(dynamickePole,pocet);
+    cout<<"Povodne pole kruhov:"<<endl;
+    Kruh::vypisPoleKruhov(dynamickePole,pocet);
+    Kruh::utriedPoleKruhov(dynamickePole,pocet);
+    cout<<"Utriedene pole:"<<endl;
+    Kruh::vypisPoleKruhov(dynamickePole,pocet);
+    delete [] dynamickePole; //uvolnenie pola
+    dynamickePole = 0;
     return 0;
 }

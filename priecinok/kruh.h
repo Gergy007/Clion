@@ -7,7 +7,9 @@ class Kruh
 {
 private:
     int polomer;
+    int pocitadlo;
 public:
+    ~Kruh(); //destruktor
     Kruh(); //vypyta si polomer vznikajuceho kruhu
     explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r
 
@@ -60,11 +62,15 @@ public:
     static void vypisPoleKruhov(const Kruh *pole, int pocet);
     static Kruh getMaxKruh(const Kruh *pole, int pocet);
     static Kruh* getMaxKruh(Kruh *pole, int pocet);
-    static void utriedPoleKruhov(const Kruh *pole, int pocet);
+    static void utriedPoleKruhov(Kruh *pole, int pocet);
+    static int cmp(const void *a, const void *b);
 
 
 };
     const float PI = 3.14;
+    static int p = 0;
+
+    //du urobit stablesort aby porovnavane hodnoty s rovnakym polomerom nemenili ich poradie
 
 
 
