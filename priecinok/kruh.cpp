@@ -41,7 +41,6 @@ Kruh Kruh::spocitajKruhy() const
     return Kruh(this -> polomer+polomer);
 }
 
-
 Kruh::Kruh()
 {
     int mPolomer;
@@ -51,7 +50,6 @@ Kruh::Kruh()
     this->polomer = mPolomer;
     this->pocitadlo = p;
 }
-
 
 Kruh::Kruh(int r):polomer(r) //iniciacny zoznam
 {
@@ -274,4 +272,9 @@ int Kruh::cmp(const void *a, const void *b)
 void Kruh::utriedPoleKruhov(Kruh *pole, int pocet)
 {
     std::qsort((Kruh *)pole,pocet,sizeof (Kruh),cmp);
+}
+
+int Kruh::getPocitadlo() const
+{
+    return this->pocitadlo;
 }

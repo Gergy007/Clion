@@ -61,10 +61,17 @@ int main()
     Kruh::generujPoleKruhov(dynamickePole,pocet);
     cout<<"Povodne pole kruhov:"<<endl;
     Kruh::vypisPoleKruhov(dynamickePole,pocet);
+    /*
     Kruh::utriedPoleKruhov(dynamickePole,pocet);
     cout<<"Utriedene pole:"<<endl;
     Kruh::vypisPoleKruhov(dynamickePole,pocet);
+    */
+    for(int i=0;i<pocet;++i)
+    {
+        std::cout<<(*(dynamickePole+i)).getPocitadlo()<<std::endl;
+    }
     delete [] dynamickePole; //uvolnenie pola
     dynamickePole = 0;
+
     return 0;
 }

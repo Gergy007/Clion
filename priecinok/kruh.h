@@ -9,14 +9,15 @@ private:
     int polomer;
     int pocitadlo;
 public:
-    ~Kruh(); //destruktor
-    Kruh(); //vypyta si polomer vznikajuceho kruhu
+    //~Kruh(); //destruktor
+    explicit Kruh(); //vypyta si polomer vznikajuceho kruhu
     explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r
 
     int getPolomer() const { return polomer;}; //inline metoda
     void setPolomer(int r) { polomer = r;}; //inline metoda
     float getObvod() const { return 2 * Kruh::PI * polomer;};
     float getObsah() const { return Kruh::PI * Kruh::PI * Kruh::PI;};
+    int getPocitadlo() const;
 
     //pretazovanie operatorov
     operator int() const;
@@ -67,7 +68,7 @@ public:
 
 
 };
-    const float PI = 3.14;
+    //const float PI = 3.14;
     static int p = 0;
 
     //du urobit stablesort aby porovnavane hodnoty s rovnakym polomerom nemenili ich poradie
