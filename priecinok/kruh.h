@@ -5,12 +5,40 @@
 
 class Kruh
 {
+    //vlozene triedy sluziace na vytvorenie vynimiek
+    class noNumber
+    {
+    private:
+        const char *msg;
+    public:
+        noNumber(const char *sprava):msg(sprava){};
+        void getMsg(){std::cout<<msg<<std::endl;}
+    };
+
+    class chybaNula
+    {
+    private:
+        const char *msg;
+    public:
+        chybaNula(const char *sprava):msg(sprava){};
+        void getMsg(){std::cout<<msg<<std::endl;}
+    };
+
+    class chybaZaporne
+    {
+    private:
+        const char *msg;
+    public:
+        chybaZaporne(const char *sprava):msg(sprava){};
+        void getMsg(){std::cout<<msg<<std::endl;}
+    };
+
 private:
     int polomer;
     int pocitadlo;
 public:
     //~Kruh(); //destruktor
-    explicit Kruh(); //vypyta si polomer vznikajuceho kruhu
+    Kruh(); //vypyta si polomer vznikajuceho kruhu
     explicit Kruh(int r); //vytvori kruh a nastavi jeho polomer na hodnotu r
 
     int getPolomer() const { return polomer;}; //inline metoda
@@ -65,13 +93,13 @@ public:
     static Kruh* getMaxKruh(Kruh *pole, int pocet);
     static void utriedPoleKruhov(Kruh *pole, int pocet);
     static int cmp(const void *a, const void *b);
-
+    static int cmpStable(const void *a,const void *b);
+    static int getInt(bool nula = true,bool zaporne = true);
 
 };
     //const float PI = 3.14;
     static int p = 0;
-
-    //du urobit stablesort aby porovnavane hodnoty s rovnakym polomerom nemenili ich poradie
+    //du urobit stablesort aby porovnavane hodnoty s rovnakym polomerom nemenili poradie
 
 
 

@@ -44,9 +44,9 @@ Kruh Kruh::spocitajKruhy() const
 Kruh::Kruh()
 {
     int mPolomer;
-    ++p;
     std::cout<<"Zadaj polomer";
     std::cin>>mPolomer;
+    ++p;
     this->polomer = mPolomer;
     this->pocitadlo = p;
 }
@@ -277,4 +277,12 @@ void Kruh::utriedPoleKruhov(Kruh *pole, int pocet)
 int Kruh::getPocitadlo() const
 {
     return this->pocitadlo;
+}
+
+int Kruh::cmpStable(const void *a,const void *b) //stable sort - triedi podla indexu prvkov
+{
+    Kruh *prvy = (Kruh *)a;
+    Kruh *druhy = (Kruh *)b;
+    int rozdiel = prvy->polomer - druhy->polomer;
+    return (rozdiel==0)?prvy->pocitadlo-druhy->pocitadlo:rozdiel;
 }
