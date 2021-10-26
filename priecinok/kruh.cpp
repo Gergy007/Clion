@@ -43,11 +43,11 @@ Kruh Kruh::spocitajKruhy() const
 
 Kruh::Kruh()
 {
-    int mPolomer;
-    std::cout<<"Zadaj polomer";
-    std::cin>>mPolomer;
+    //int mPolomer;
+    //std::cout<<"Zadaj polomer";
+    //std::cin>>mPolomer;
     ++p;
-    this->polomer = mPolomer;
+    this->polomer = getInt(false, false);
     this->pocitadlo = p;
 }
 
@@ -285,4 +285,50 @@ int Kruh::cmpStable(const void *a,const void *b) //stable sort - triedi podla in
     Kruh *druhy = (Kruh *)b;
     int rozdiel = prvy->polomer - druhy->polomer;
     return (rozdiel==0)?prvy->pocitadlo-druhy->pocitadlo:rozdiel;
+}
+
+int Kruh::getInt(bool nula, bool zaporne)
+{
+    int tmp;
+    while(true)
+    {
+        try
+        {
+            std::cout << "Zadaj cislo:";
+            if (!(std::cin >> tmp)) //ak nebolo nacitanie uspesne t.j. nebolo zadane korektne cele cislo, nastvi sa chybovy bit
+            {
+                throw Kruh::noNumber("Nebolo zadane cislo!"); //vyhodime vynimku a posleme spravu konstruktoru
+            }
+            if(nula == false && tmp == 0)
+            {
+                throw Kruh::chybaNula("Nula nie je povolena!");
+            }
+            if(zaporne == false && tmp < 0)
+            {
+                throw Kruh::chybaZaporne("Bolo zadane zaporne cislo!");
+            }
+        }
+        catch (const Kruh::noNumber & ex) //zachytime vynimku ak nebolo zadane cislo
+        {
+            std::cin.clear(); //vymazene chybovy bit nastaveny v objekte neuspesnym citanim
+            std::cin.ignore(1000,'\n'); //vycisti vyrovnavaciu pamat klavesnice od zvysku zadaneho vstupu
+            ex.getMsg(); //vypiseme spravu
+            continue;
+        }
+        catch (const Kruh::chybaNula & ex)
+        {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            ex.getMsg();
+            continue;
+        }
+        catch (const Kruh::chybaZaporne & ex)
+        {
+            std::cin.clear();
+            std::cin.ignore(1000,'\n');
+            ex.getMsg();
+            continue;
+        }
+        return tmp;
+    }
 }

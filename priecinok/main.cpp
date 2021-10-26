@@ -52,12 +52,20 @@ int main()
     //dynamicky generovane pole
     std::cout<<"Zadaj pocet prvkov pola: "<<endl;
     std::cin>>pocet;
-    Kruh *dynamickePole = new Kruh [pocet]; //alokacia pamate na hromade operatom new
+    Kruh *dynamickePole;
+    try
+    {
+        dynamickePole = new Kruh[pocet]; //alokacia pamate na hromade operatom new
+    }
+    catch (std::bad_alloc & ex)
+    {
+        std::cout<<"Chyba pridelenia pamate";
+    }
 
 
-    Kruh::generujPoleKruhov(dynamickePole,pocet);
-    cout<<"Povodne pole kruhov:"<<endl;
-    Kruh::vypisPoleKruhov(dynamickePole,pocet);
+    //Kruh::generujPoleKruhov(dynamickePole,pocet);
+    //cout<<"Povodne pole kruhov:"<<endl;
+    //Kruh::vypisPoleKruhov(dynamickePole,pocet);
     /*
     Kruh::utriedPoleKruhov(dynamickePole,pocet);
     cout<<"Utriedene pole:"<<endl;

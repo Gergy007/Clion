@@ -12,7 +12,7 @@ class Kruh
         const char *msg;
     public:
         noNumber(const char *sprava):msg(sprava){};
-        void getMsg(){std::cout<<msg<<std::endl;}
+        void getMsg() const {std::cout<<msg<<std::endl;}
     };
 
     class chybaNula
@@ -21,7 +21,7 @@ class Kruh
         const char *msg;
     public:
         chybaNula(const char *sprava):msg(sprava){};
-        void getMsg(){std::cout<<msg<<std::endl;}
+        void getMsg() const {std::cout<<msg<<std::endl;}
     };
 
     class chybaZaporne
@@ -30,7 +30,7 @@ class Kruh
         const char *msg;
     public:
         chybaZaporne(const char *sprava):msg(sprava){};
-        void getMsg(){std::cout<<msg<<std::endl;}
+        void getMsg() const {std::cout<<msg<<std::endl;}
     };
 
 private:
