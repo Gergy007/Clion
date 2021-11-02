@@ -5,33 +5,41 @@
 
 class Kruh
 {
+    //rodicovska trieda, od ktorej odvodime triedy chyb
+    class Chyba
+    {
+    protected:  //chraneny clen, potomkovia maju k nemu pristup ako k verejnemu, ostatne triedy ako k privatnemu
+        const char *msg;
+        int kodChyby;
+    public:
+        Chyba(const char *sprava):msg(sprava){};
+        void getMsg()const {std::cout<<msg<<std::endl;};
+        int vratKodChyby(){return kodChyby;};
+    };
+
     //vlozene triedy sluziace na vytvorenie vynimiek
-    class noNumber
+    class noNumber:public Chyba //trieda je verejne odvodena od triedy Chyba
     {
     private:
-        const char *msg;
+        const char *mojaMsg;
     public:
-        noNumber(const char *sprava):msg(sprava){};
-        void getMsg() const {std::cout<<msg<<std::endl;}
+        noNumber(const char *sprava, const char * mojaSprava): Chyba(sprava){mojaMsg = mojaSprava;};
+        const char *getMojaMsg(){return mojaMsg;};
+        void getMsg()const {std::cout<<msg<<mojaMsg<<std::endl;};
     };
 
-    class chybaNula
+    class chybaNula:public Chyba
     {
-    private:
-        const char *msg;
     public:
-        chybaNula(const char *sprava):msg(sprava){};
-        void getMsg() const {std::cout<<msg<<std::endl;}
+        chybaNula(const char *sprava): Chyba(sprava){};
     };
 
-    class chybaZaporne
+    class chybaZaporne:public Chyba
     {
-    private:
-        const char *msg;
     public:
-        chybaZaporne(const char *sprava):msg(sprava){};
-        void getMsg() const {std::cout<<msg<<std::endl;}
+        chybaZaporne(const char *sprava): Chyba(sprava){};
     };
+
 
 private:
     int polomer;

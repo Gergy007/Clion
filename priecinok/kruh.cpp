@@ -297,7 +297,7 @@ int Kruh::getInt(bool nula, bool zaporne)
             std::cout << "Zadaj cislo:";
             if (!(std::cin >> tmp)) //ak nebolo nacitanie uspesne t.j. nebolo zadane korektne cele cislo, nastvi sa chybovy bit
             {
-                throw Kruh::noNumber("Nebolo zadane cislo!"); //vyhodime vynimku a posleme spravu konstruktoru
+                throw Kruh::noNumber("Nebolo zadane cislo!", "Sprava od potomka"); //vyhodime vynimku a posleme spravu konstruktoru
             }
             if(nula == false && tmp == 0)
             {
@@ -308,13 +308,14 @@ int Kruh::getInt(bool nula, bool zaporne)
                 throw Kruh::chybaZaporne("Bolo zadane zaporne cislo!");
             }
         }
-        catch (const Kruh::noNumber & ex) //zachytime vynimku ak nebolo zadane cislo
-        {
+        catch (const Kruh::Chyba & ex) //zachytime vynimku ak nebolo zadane cislo, objektu rodica sa moze priradit odkaz na objekt potomka
+        {                              //kompilator potom vzdy zavola spravnu metodu podla typu odkazu a nie podla typu objektu
             std::cin.clear(); //vymazene chybovy bit nastaveny v objekte neuspesnym citanim
             std::cin.ignore(1000,'\n'); //vycisti vyrovnavaciu pamat klavesnice od zvysku zadaneho vstupu
             ex.getMsg(); //vypiseme spravu
             continue;
         }
+        /*
         catch (const Kruh::chybaNula & ex)
         {
             std::cin.clear();
@@ -329,6 +330,7 @@ int Kruh::getInt(bool nula, bool zaporne)
             ex.getMsg();
             continue;
         }
+        */
         return tmp;
     }
 }
