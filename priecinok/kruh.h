@@ -1,4 +1,3 @@
-
 #ifndef PRVY_KRUH_H
 #define PRVY_KRUH_H
 #include <iostream>
@@ -13,11 +12,18 @@ class Kruh
         int kodChyby;
     public:
         Chyba(const char *sprava):msg(sprava){};
-        void getMsg()const {std::cout<<msg<<std::endl;};
+        virtual void getMsg()const {std::cout<<msg<<std::endl;};
         int vratKodChyby(){return kodChyby;};
     };
-
     //vlozene triedy sluziace na vytvorenie vynimiek
+
+public: class streamError:public Chyba
+    {
+    public:
+        streamError(const char *sprva): Chyba(sprva){};
+    };
+
+
     class noNumber:public Chyba //trieda je verejne odvodena od triedy Chyba
     {
     private:

@@ -204,13 +204,14 @@ Kruh operator*(int cislo, const Kruh &other)
 
 std::ostream &operator<<(std::ostream &os, const Kruh &other)
 {
+    //os<<"Kruh c."<<other.pocitadlo<<" ma polomer "<<other.polomer<<std::endl;
     os<<"Kruh ma polomer "<<other.polomer<<std::endl;
     return os;
 }
 
 std::istream &operator>>(std::istream &is, Kruh &other)
 {
-    std::cout<<"Zadaj polomer: ";
+    //std::cout<<"Zadaj polomer: ";
     is>>other.polomer;
     return is;
 }
@@ -309,7 +310,7 @@ int Kruh::getInt(bool nula, bool zaporne)
             }
         }
         catch (const Kruh::Chyba & ex) //zachytime vynimku ak nebolo zadane cislo, objektu rodica sa moze priradit odkaz na objekt potomka
-        {                              //kompilator potom vzdy zavola spravnu metodu podla typu odkazu a nie podla typu objektu
+        {                              //kompilator potom vzdy zavola spravnu metodu (musi byt virtualna) podla typu odkazu a nie podla typu objektu
             std::cin.clear(); //vymazene chybovy bit nastaveny v objekte neuspesnym citanim
             std::cin.ignore(1000,'\n'); //vycisti vyrovnavaciu pamat klavesnice od zvysku zadaneho vstupu
             ex.getMsg(); //vypiseme spravu
