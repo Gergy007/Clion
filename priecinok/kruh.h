@@ -20,7 +20,7 @@ class Kruh
 public: class streamError:public Chyba
     {
     public:
-        streamError(const char *sprva): Chyba(sprva){};
+        streamError(const char *sprava): Chyba(sprava){};
     };
 
 

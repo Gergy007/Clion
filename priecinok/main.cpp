@@ -111,7 +111,9 @@ int main()
     }
     */
 
-
+    Kruh K;
+    K.generujSuborKruhov("skuska",10);
+    K.precitajSuborKruhov("skuska",10);
 
 
     return 0;
