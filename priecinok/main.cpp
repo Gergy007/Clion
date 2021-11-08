@@ -75,6 +75,7 @@ int main()
     dynamickePole = 0;
     */
 
+    /*
     //citanie zo suboru
     ifstream fin; //vytvoreny objekt pre citanie zo suboru
     fin.open("citaj.txt"); //inicializujeme objekt konkretnym suborom
@@ -93,11 +94,12 @@ int main()
         {
             throw Kruh::streamError("Nepodarilo sa otvorit subor na zapis!");
         }
-        while (fin>>K) //kym je citanie uspesne
+        while(fin>>K) //kym je citanie uspesne
         {
             cout<<K; //vypiseme precitany kruh na obrazovku
             fout<<K; //zapiseme kruh do suboru
         }
+
 
         fin.close(); //uzatvorime stream
         fout.close();
@@ -107,6 +109,9 @@ int main()
         ex.getMsg();
         return 1;
     }
+    */
+
+
 
 
     return 0;

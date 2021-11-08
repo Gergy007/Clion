@@ -2,6 +2,7 @@
 // Created by map on 27. 9. 2021.
 //
 #include "kruh.h"
+#include <fstream>
 
 /*
 float Kruh::getObvod() const
@@ -47,7 +48,7 @@ Kruh::Kruh()
     //std::cout<<"Zadaj polomer";
     //std::cin>>mPolomer;
     ++p;
-    this->polomer = getInt(false, false);
+    //this->polomer = getInt(false, false);
     this->pocitadlo = p;
 }
 
@@ -334,4 +335,71 @@ int Kruh::getInt(bool nula, bool zaporne)
         */
         return tmp;
     }
+}
+
+int Kruh::generujSuborKruhov(const char *nazov, int kolko)
+{
+    srand(time(0));
+    std::ofstream fout;
+    fout.open(nazov);
+    try
+    {
+        if(!fout.is_open())
+        {
+            throw Kruh::streamError("Nepodarilo sa otvorit subor na zapis!");
+        }
+
+        for(int i=0;i<kolko;++i)
+        {
+            fout<< 1 + (rand() % 20)<<std::endl;
+        }
+        fout.close();
+    }
+    catch (const Kruh::streamError & ex) //zachytenie vynimky
+    {
+        ex.getMsg();
+        return 1;
+    }
+
+    return 0;
+}
+
+Kruh *Kruh::precitajSuborKruhov(const char *nazov, int kolko)
+{
+    Kruh *pole;
+    try
+    {
+        pole = new Kruh[kolko];
+    }
+    catch (std::bad_alloc & ex)
+    {
+        std::cout<<"Nepodarilo sa vytvorit pole kruhov!"<<std::endl;
+        return NULL;
+    }
+
+    std::ifstream fin;
+    fin.open(nazov);
+    int i =-1;
+
+    try
+    {
+        if(!fin.is_open())
+        {
+            throw Kruh::streamError("Nepodarilo sa otvorit subor na citanie!");
+        }
+
+        while (fin>>i)
+        {
+            ++i;
+            (pole+i)->polomer = i;
+        }
+        fin.close();
+    }
+    catch (const Kruh::streamError & ex) //zachytenie vynimky
+    {
+        ex.getMsg();
+        return NULL;
+    }
+
+    return pole;
 }

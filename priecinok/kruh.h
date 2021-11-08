@@ -109,6 +109,8 @@ public:
     static int cmp(const void *a, const void *b);
     static int cmpStable(const void *a,const void *b);
     static int getInt(bool nula = true,bool zaporne = true);
+    static int generujSuborKruhov(const char *nazov, int kolko);
+    static Kruh * precitajSuborKruhov(const char *nazov, int kolko);
 
 };
     //const float PI = 3.14;
